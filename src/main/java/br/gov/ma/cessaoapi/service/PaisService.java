@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaisService {
 
-    private final PaisRepository repository;
+    private final PaisRepository repository = null;
 
     public Pais salvar(Pais pais) {
         return this.repository.save(pais);
