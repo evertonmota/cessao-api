@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import api.request.PaisRequest;
@@ -15,15 +16,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PaisMapper {
 
-	private final ModelMapper mapper = new ModelMapper();
+	private final ModelMapper mapper; //= new ModelMapper();
 	
 	//retornando pais
-	public Pais toPais(PaisRequest request) {
+	public  Pais toPais(PaisRequest request) {
+
 		return mapper.map(request, Pais.class);
 	}
 	
 	//retornando pais response
-	public PaisResponse toPaisResponse(Pais pais) {
+	public  PaisResponse toPaisResponse(Pais pais) {
+
 		return mapper.map(pais, PaisResponse.class);
 	}
 	
@@ -33,5 +36,5 @@ public class PaisMapper {
 				.map(this::toPaisResponse)
 				.collect(Collectors.toList());
 	}
-	
+
 }

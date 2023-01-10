@@ -1,5 +1,8 @@
 package br.gov.ma.cessaoapi.controller;
 
+import api.mapper.PaisMapper;
+import api.request.PaisRequest;
+import api.response.PaisResponse;
 import br.gov.ma.cessaoapi.domain.Pais;
 import br.gov.ma.cessaoapi.model.PaisModel;
 import br.gov.ma.cessaoapi.repository.PaisRepository;
@@ -13,12 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import api.mapper.PaisMapper;
-import api.request.PaisRequest;
-import api.response.PaisResponse;
-
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -27,26 +25,21 @@ import java.util.stream.Collectors;
 @RequestMapping(value="/paises")
 public class PaisController {
 
-    private PaisRepository repository;
+    private PaisRepository repository ;
     
-    private final PaisService service = new PaisService();
-    private final PaisMapper mapper = new PaisMapper();
+    private final PaisService service ;
+    private final PaisMapper mapper ;
 
-    @Autowired
     private ModelMapper modelMapper;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaisController.class);
 
+  /* @PostMapping
+    public ResponseEntity<Pais> salvar(@RequestBody Pais pais){
+        return ResponseEntity.ok(service.salvar(pais));
+    }
+*/
 
-//    @PostMapping
-//    public ResponseEntity<PaisModel> salvar(@RequestBody PaisModel pais){
-//        LOGGER.debug("Salvando País ");
-//
-//          Pais p = toPaisModel(pais);
-//
-//        return ResponseEntity.ok(repository.save(p));
-//    }
-    
     @PostMapping
     public ResponseEntity<PaisResponse> salvar(@RequestBody PaisRequest request){
     	Pais pais = mapper.toPais(request);
@@ -54,7 +47,7 @@ public class PaisController {
     	PaisResponse paisResponse = mapper.toPaisResponse(paisSalvo);
     	return ResponseEntity.status(HttpStatus.OK).body(paisResponse);
     }
-    
+
 
     @GetMapping
     public List<PaisModel>listarTodos(){
