@@ -1,9 +1,5 @@
 package br.gov.ma.cessaoapi.controller;
 
-import br.gov.ma.cessaoapi.domain.Pais;
-import br.gov.ma.cessaoapi.repository.PaisRepository;
-import br.gov.ma.cessaoapi.service.PaisService;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,20 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.gov.ma.cessaoapi.domain.Pais;
+import br.gov.ma.cessaoapi.repository.PaisRepository;
+import br.gov.ma.cessaoapi.service.PaisService;
 
-@AllArgsConstructor
+
 @RestController
 @RequestMapping(value="/paises")
 public class PaisController {
 
     private PaisRepository repository ;
-    
     private PaisService service;
-    //private PaisMapper mapper;
-
     private ModelMapper modelMapper;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PaisController.class);
+    public PaisController(PaisRepository repository, PaisService service, ModelMapper modelMapper) {
+		super();
+		this.repository = repository;
+		this.service = service;
+		this.modelMapper = modelMapper;
+	}
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(PaisController.class);
 
    @PostMapping
     public ResponseEntity<Pais> salvar(@RequestBody Pais pais){

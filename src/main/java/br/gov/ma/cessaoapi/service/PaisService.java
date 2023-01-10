@@ -1,18 +1,23 @@
 package br.gov.ma.cessaoapi.service;
 
-import br.gov.ma.cessaoapi.domain.Pais;
-import br.gov.ma.cessaoapi.repository.PaisRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@AllArgsConstructor
+import br.gov.ma.cessaoapi.domain.Pais;
+import br.gov.ma.cessaoapi.repository.PaisRepository;
+
 @Service
 public class PaisService {
 
     private final PaisRepository repository ;
+    
+    public PaisService(PaisRepository repository) {
+		super();
+		this.repository = repository;
+	}
 
-    public Pais salvar(Pais pais) {
+
+
+	public Pais salvar(Pais pais) {
         return this.repository.save(pais);
     }
 }

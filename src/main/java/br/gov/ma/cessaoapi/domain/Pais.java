@@ -1,10 +1,5 @@
 package br.gov.ma.cessaoapi.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
@@ -12,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
-@Data
 @Entity
 public class Pais {
 
