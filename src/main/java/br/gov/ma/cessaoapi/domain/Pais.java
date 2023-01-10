@@ -2,13 +2,15 @@ package br.gov.ma.cessaoapi.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.UUID;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
@@ -16,10 +18,33 @@ public class Pais {
 
     @Id
     @GeneratedValue()
-    private UUID id;
+    private Long id;
 
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 2 ,  max = 100, message = "O tamanho deve ser entre 10 e até 100 digitos")
     private String nomePais;
 
+    public Pais() {
+    }
+
+    public Pais(Long id, String nomePais) {
+        this.id = id;
+        this.nomePais = nomePais;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNomePais() {
+        return nomePais;
+    }
+
+    public void setNomePais(String nomePais) {
+        this.nomePais = nomePais;
+    }
 }
