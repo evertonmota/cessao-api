@@ -1,8 +1,7 @@
 package br.gov.ma.cessaoapi.controller;
 
-import api.mapper.PaisMapper;
-import api.request.PaisRequest;
-import api.response.PaisResponse;
+import br.gov.ma.cessaoapi.request.PaisRequest;
+import br.gov.ma.cessaoapi.response.PaisResponse;
 import br.gov.ma.cessaoapi.domain.Pais;
 import br.gov.ma.cessaoapi.model.PaisModel;
 import br.gov.ma.cessaoapi.repository.PaisRepository;
@@ -11,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

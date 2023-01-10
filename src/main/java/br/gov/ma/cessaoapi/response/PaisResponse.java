@@ -1,4 +1,4 @@
-package api.response;
+package br.gov.ma.cessaoapi.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
