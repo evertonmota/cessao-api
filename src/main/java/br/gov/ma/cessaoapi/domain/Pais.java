@@ -16,7 +16,7 @@ public class Pais {
 
     @Id
     @GeneratedValue()
-    private UUID id;
+    private Long id;
 
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 2 ,  max = 100, message = "O tamanho deve ser entre 10 e até 100 digitos")
