@@ -1,23 +1,19 @@
 package br.gov.ma.cessaoapi.service;
 
-import org.springframework.stereotype.Service;
+import br.gov.ma.cessaoapi.dto.PaisDTO;
+import br.gov.ma.cessaoapi.errors.BusinessException;
+import br.gov.ma.cessaoapi.errors.NotFoundException;
+import org.springframework.data.domain.Page;
 
-import br.gov.ma.cessaoapi.domain.Pais;
-import br.gov.ma.cessaoapi.repository.PaisRepository;
-
-@Service
-public class PaisService {
-
-    private final PaisRepository repository ;
-    
-    public PaisService(PaisRepository repository) {
-		super();
-		this.repository = repository;
-	}
+import java.io.Serializable;
+import java.util.List;
 
 
+public interface PaisService extends Serializable {
 
-	public Pais salvar(Pais pais) {
-        return this.repository.save(pais);
-    }
+    PaisDTO salvarPais(PaisDTO dto) throws BusinessException;
+    PaisDTO autalizarPais(Long idPais, PaisDTO dto) throws NotFoundException, BusinessException;
+    PaisDTO buscaPaisPorId(Long idPais) throws NotFoundException, BusinessException;
+    List<PaisDTO> buscarPaisPorFiltros(String nomePais, int page, int size) throws NotFoundException, BusinessException;
+
 }

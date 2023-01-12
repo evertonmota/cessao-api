@@ -1,69 +1,59 @@
 package br.gov.ma.cessaoapi.controller;
 
-import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import br.gov.ma.cessaoapi.domain.Pais;
+import br.gov.ma.cessaoapi.dto.PaisDTO;
+import br.gov.ma.cessaoapi.errors.BusinessException;
+import br.gov.ma.cessaoapi.errors.NotFoundException;
 import br.gov.ma.cessaoapi.repository.PaisRepository;
 import br.gov.ma.cessaoapi.service.PaisService;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
-@RequestMapping(value="/paises")
+@RequestMapping(value="/paises", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PaisController {
 
-    private PaisRepository repository ;
-    private PaisService service;
-    private ModelMapper modelMapper;
+    private final PaisRepository repository ;
+    private final PaisService service;
 
-    public PaisController(PaisRepository repository, PaisService service, ModelMapper modelMapper) {
+    public PaisController(PaisRepository repository, PaisService service) {
 		super();
 		this.repository = repository;
 		this.service = service;
-		this.modelMapper = modelMapper;
 	}
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PaisController.class);
+    @PostMapping
+    @ApiOperation(value = "Salva detalhes do País", notes = "Método de criação das informações possíveis na entidade PAIS")
+    public ResponseEntity<PaisDTO> salvar(@RequestBody PaisDTO pais) throws BusinessException {
+        PaisDTO response = this.service.salvarPais(pais);
+        return ResponseEntity.ok().body(response);
+    }
 
-   @PostMapping
-    public ResponseEntity<Pais> salvar(@RequestBody Pais pais){
-        return ResponseEntity.ok(service.salvar(pais));
+    @PutMapping(path = "/{id}")
+    @ApiOperation(value = "Atualiza detalhes do País", notes = "Método de atualização das informações possíveis na entidade PAIS")
+    public ResponseEntity<PaisDTO> atualizar(@PathVariable long id, @RequestBody PaisDTO pais) throws BusinessException, NotFoundException {
+        PaisDTO response = this.service.autalizarPais(id, pais);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(path = "{id}/buscar_por_id")
+    @ApiOperation(value = "Busca País por ID", notes = "Método de busca por id da entidade PAIS")
+    public ResponseEntity<PaisDTO> buscaPaisPorId(@PathVariable long id) throws BusinessException, NotFoundException {
+        PaisDTO response = this.service.buscaPaisPorId(id);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(path = "/busca_por_filtro/{page}/{size}")
+    @ApiOperation(value = "Busca País por ID", notes = "Método de busca por filtros da entidade PAIS")
+    public ResponseEntity<List<PaisDTO>> find(@PathVariable  String nomePais, @PathVariable int page, @PathVariable int size) throws BusinessException, NotFoundException {
+        List<PaisDTO> listResponse = this.service.buscarPaisPorFiltros(nomePais, page, size);
+        return ResponseEntity.ok().body(listResponse);
     }
 
 
-    /*@PostMapping
-    public ResponseEntity<PaisResponse> salvar(@RequestBody PaisRequest request){
-    	Pais pais = mapper.toPais(request);
-    	Pais paisSalvo = service.salvar(pais);
-    	PaisResponse paisResponse = mapper.toPaisResponse(paisSalvo);
-    	return ResponseEntity.status(HttpStatus.OK).body(paisResponse);
-    }*/
-
-
-//    @GetMapping
-//    public List<PaisModel>listarTodos(){
-//        return repository.findAll()
-//                .stream()
-//                .map(this::toPaisModel)
-//                .collect(Collectors.toList());
-//    }
-
-//    @GetMapping("/paisId")
-//    public PaisModel buscar(@PathVariable UUID paisID){
-//        Pais pais = repository.findById(paisID)
-//                .orElseThrow(PaisNaoEncontradoException:: new);
-//
-//        return toPaisModel(pais);
-//    }
-
-    /*private PaisModel toPaisModel (Pais pais){
-        return modelMapper.map(pais,PaisModel.class);
-    }*/
 
 }
