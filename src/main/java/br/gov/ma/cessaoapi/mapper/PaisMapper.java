@@ -7,6 +7,10 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PaisMapper extends EntityMapper<PaisDTO, Pais> {
 
+    Pais toEntity(PaisDTO paisDTO);
+
+    PaisDTO toDto(Pais pais);
+
     default Pais fromId(Long id) {
         if (id == null) {
             return null;
