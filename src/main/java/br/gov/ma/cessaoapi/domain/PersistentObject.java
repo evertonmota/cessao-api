@@ -1,12 +1,7 @@
 package br.gov.ma.cessaoapi.domain;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 @MappedSuperclass
 public class PersistentObject<ID extends Serializable> implements Serializable {
@@ -32,7 +27,7 @@ public class PersistentObject<ID extends Serializable> implements Serializable {
 
     @Column(name = "altered", columnDefinition = "timestamp")
     //@Convert(converter = LocalDateTimeAttributeConverter.class)
-    protected LocalDateTime altered;*/
+    protected LocalDateTime altered;
 
     public PersistentObject() {
     }
@@ -81,19 +76,4 @@ public class PersistentObject<ID extends Serializable> implements Serializable {
     public void setAltered(LocalDateTime altered) {
         this.altered = altered;
     }*/
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PersistentObject<?> that = (PersistentObject<?>) o;
-
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
 }

@@ -13,7 +13,8 @@ import java.util.List;
 @Repository
 public interface PaisRepository  extends JpaRepository<Pais, Long> {
 
-    @Query("SELECT new br.gov.ma.cessaoapi.domain.Pais(\n" +
+
+    @Query("SELECT new br.gov.ma.cessaoapi.dto.PaisDTO(\n" +
             "p.id, p.nomePais) FROM Pais p WHERE (:nomePais is null or p.nomePais = :nomePais)")
     List<PaisDTO> buscaPaisesPorFiltro(@Param("nomePais") String nomePais, Pageable pageable);
 }

@@ -97,12 +97,11 @@ public class PaisServiceImpl implements PaisService {
     public List<PaisDTO> buscarPaisPorFiltros(String nomePais, int page, int size) throws NotFoundException, BusinessException {
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
 
-        // EXISTE 3 FORMAS DE FAZER ISSO .. QUERY JPA, QUERY NATIVA OU POR SPECIFICATION. FIZ POR QUERY JPA PRA SER MAIS RAPIDO.
-        // MAS ACHO SPECIFICATION MAIS BONITO
-       /* List<PaisDTO> response = this.paisRepository.buscaPaisesPorFiltro(nomePais, pageable);
+
+        List<PaisDTO> response = this.paisRepository.buscaPaisesPorFiltro(nomePais, pageable);
         if(CollectionUtils.isEmpty(response)){
             throw new NotFoundException("Não existe paises cadastrados");
-        }*/
+        }
         return null;//response;
     }
 }

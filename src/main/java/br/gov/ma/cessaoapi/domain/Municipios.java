@@ -1,5 +1,9 @@
 package br.gov.ma.cessaoapi.domain;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5cff2f755bc92cab95d230d659cd4df4165610cd
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -19,6 +23,7 @@ public class Municipios extends PersistentObject<Long> {
     @ManyToOne
     @JoinColumn(name = "idestado", referencedColumnName = "id")
     private Estados estado;
+
 
     public Municipios() {
     }

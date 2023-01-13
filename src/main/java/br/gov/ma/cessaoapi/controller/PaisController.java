@@ -47,9 +47,10 @@ public class PaisController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping(path = "/busca_por_filtro/{nomePais}/{page}/{size}")
+
+    @GetMapping(path = "/busca_por_filtro/{page}/{size}")
     @ApiOperation(value = "Busca País por ID", notes = "Método de busca por filtros da entidade PAIS")
-    public ResponseEntity<List<PaisDTO>> fin(@PathVariable String nomePais, @PathVariable int page, @PathVariable int size) throws BusinessException, NotFoundException {
+    public ResponseEntity<List<PaisDTO>> find(@PathVariable  String nomePais, @PathVariable int page, @PathVariable int size) throws BusinessException, NotFoundException {
         List<PaisDTO> listResponse = this.service.buscarPaisPorFiltros(nomePais, page, size);
         return ResponseEntity.ok().body(listResponse);
     }

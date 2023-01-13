@@ -8,10 +8,13 @@ import java.io.Serializable;
 
 public class EstadosDTO implements Serializable {
 
+    private static final long serialVersionUID = 6220002712550385071L;
+
     @ApiModelProperty(position = 1)
     private Long id;
 
     @ApiModelProperty(position = 2)
+
     @NotNull(message = "Nome do Estado é obrigatório")
     private String nome;
 
@@ -56,11 +59,20 @@ public class EstadosDTO implements Serializable {
         this.sigla = sigla;
     }
 
+<<<<<<< HEAD
     public Long getIdPais() {
         return idPais;
     }
 
     public void setIdPais(Long idPais) {
         this.idPais = idPais;
+=======
+    public PaisDTO getPais() {
+        return pais;
+    }
+
+    public void setPais(PaisDTO pais) {
+        this.pais = pais;
+>>>>>>> 5cff2f755bc92cab95d230d659cd4df4165610cd
     }
 }
