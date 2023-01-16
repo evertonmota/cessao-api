@@ -97,7 +97,6 @@ public class PaisServiceImpl implements PaisService {
     public List<PaisDTO> buscarPaisPorFiltros(String nomePais, int page, int size) throws NotFoundException, BusinessException {
         Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
 
-
         List<PaisDTO> response = this.paisRepository.buscaPaisesPorFiltro(nomePais, pageable);
         if(CollectionUtils.isEmpty(response)){
             throw new NotFoundException("Não existe paises cadastrados");

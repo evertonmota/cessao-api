@@ -12,5 +12,5 @@ public interface CargosService {
     List<CargosDTO> buscarTodosCargos() throws BusinessException;
     CargosDTO buscarCargoID(Long id) throws NotFoundException, BusinessException;
     CargosDTO atualizaCargo(Long id, CargosDTO dto) throws NotFoundException, BusinessException;
-
+    List<CargosDTO> buscarCargoEnteExterno(Long idEnteExterno) throws BusinessException;
 }

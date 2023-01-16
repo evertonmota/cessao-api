@@ -1,0 +1,62 @@
+2023-01-15 21:16:06 [32m2023-01-15 21:16:06,591[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.StartupInfoLogger[0;39m: Starting CessaoApiApplication using Java 11.0.12 on LIS-JMHVLQ2 with PID 249676 (C:\workspaces\pessoal\cessao\cessao-api\target\classes started by tsouzara in C:\workspaces\pessoal\cessao\cessao-api)
+2023-01-15 21:16:06 [32m2023-01-15 21:16:06,591[0;39m [34mINFO [0;39m [[34mbackground-preinit[0;39m] [33morg.hibernate.validator.internal.util.Version[0;39m: HV000001: Hibernate Validator 6.2.5.Final
+2023-01-15 21:16:06 [32m2023-01-15 21:16:06,591[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.SpringApplication[0;39m: The following 1 profile is active: "@activatedProperties@"
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,345[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Initializing ProtocolHandler ["http-nio-8082"]
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,345[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Starting service [Tomcat]
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,345[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,498[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Initializing Spring embedded WebApplicationContext
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,514[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33mbr.gov.ma.cessaoapi.config.SimpleCORSFilter[0;39m: SimpleCORSFilter init
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,560[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Stopping service [Tomcat]
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,577[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener[0;39m: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-01-15 21:16:09 [32m2023-01-15 21:16:09,594[0;39m [1;31mERROR[0;39m [[34mmain[0;39m] [33morg.springframework.boot.diagnostics.LoggingFailureAnalysisReporter[0;39m: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine suitable jdbc url
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (the profiles @activatedProperties@ are currently active).
+
+2023-01-15 21:18:36 [32m2023-01-15 21:18:36,152[0;39m [34mINFO [0;39m [[34mbackground-preinit[0;39m] [33morg.hibernate.validator.internal.util.Version[0;39m: HV000001: Hibernate Validator 6.2.5.Final
+2023-01-15 21:18:36 [32m2023-01-15 21:18:36,152[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.StartupInfoLogger[0;39m: Starting CessaoApiApplication using Java 11.0.12 on LIS-JMHVLQ2 with PID 195276 (C:\workspaces\pessoal\cessao\cessao-api\target\classes started by tsouzara in C:\workspaces\pessoal\cessao\cessao-api)
+2023-01-15 21:18:36 [32m2023-01-15 21:18:36,152[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.SpringApplication[0;39m: The following 1 profile is active: "@activatedProperties@"
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,725[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Initializing ProtocolHandler ["http-nio-8082"]
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,725[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Starting service [Tomcat]
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,725[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,841[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Initializing Spring embedded WebApplicationContext
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,841[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33mbr.gov.ma.cessaoapi.config.SimpleCORSFilter[0;39m: SimpleCORSFilter init
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,910[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.apache.juli.logging.DirectJDKLog[0;39m: Stopping service [Tomcat]
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,925[0;39m [34mINFO [0;39m [[34mmain[0;39m] [33morg.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener[0;39m: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-01-15 21:18:37 [32m2023-01-15 21:18:37,941[0;39m [1;31mERROR[0;39m [[34mmain[0;39m] [33morg.springframework.boot.diagnostics.LoggingFailureAnalysisReporter[0;39m: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine suitable jdbc url
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (the profiles @activatedProperties@ are currently active).
+

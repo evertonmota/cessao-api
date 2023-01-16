@@ -25,15 +25,15 @@ public class Cargos extends PersistentObject<Long>{
     private boolean externo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "identesexternos", referencedColumnName = "id")
+    @JoinColumn(name = "identesexternos", referencedColumnName = "id", nullable = true)
     private EntesExternos entesExternos;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcargoexternos", referencedColumnName = "id")
+    @JoinColumn(name = "idcargoexternos", referencedColumnName = "id", nullable = true)
     private Cargos cargoExterno;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idestadoexternos", referencedColumnName = "id")
+    @JoinColumn(name = "idestadoexternos", referencedColumnName = "id", nullable = true)
     private Cargos cargoEstado;
 
     public Cargos() {

@@ -31,7 +31,7 @@ public class CargosDTO implements Serializable {
 
     @ApiModelProperty(position = 6)
     @NotNull(message = "Campo externo não pode ser nulo")
-    private String externo;
+    private Boolean externo;
 
     @ApiModelProperty(position = 7)
     private Long idEntesExternos;
@@ -46,7 +46,7 @@ public class CargosDTO implements Serializable {
     }
 
     public CargosDTO(Long id, String nomeCargo, String simbologiaCargo, BigDecimal valorCargo, Integer cargaHoraria,
-                     String externo, Long idEntesExternos, Long idCargoExterno, Long idCargoEstado) {
+                     Boolean externo, Long idEntesExternos, Long idCargoExterno, Long idCargoEstado) {
         this.id = id;
         this.nomeCargo = nomeCargo;
         this.simbologiaCargo = simbologiaCargo;
@@ -98,11 +98,11 @@ public class CargosDTO implements Serializable {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public String getExterno() {
+    public Boolean getExterno() {
         return externo;
     }
 
-    public void setExterno(String externo) {
+    public void setExterno(Boolean externo) {
         this.externo = externo;
     }
 

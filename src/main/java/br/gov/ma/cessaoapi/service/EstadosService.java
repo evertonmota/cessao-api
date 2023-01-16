@@ -10,7 +10,7 @@ import java.util.List;
 public interface EstadosService extends Serializable {
 
     EstadosDTO salvarEstado(EstadosDTO dto) throws BusinessException;
-    EstadosDTO autalizarEstado(Long idEstado, EstadosDTO dto) throws NotFoundException, BusinessException;
+    EstadosDTO atualizarEstado(Long idEstado, EstadosDTO dto) throws NotFoundException, BusinessException;
     EstadosDTO buscaEstadoPorId(Long idEstado) throws NotFoundException, BusinessException;
-    List<EstadosDTO> buscarEstadoPorFiltros(String nomeEstado, int page, int size) throws NotFoundException, BusinessException;
+    List<EstadosDTO> buscarEstadoPorFiltros(String nomeEstado, String sigla, Long id, long idPais, int page, int size) throws NotFoundException, BusinessException;
 }

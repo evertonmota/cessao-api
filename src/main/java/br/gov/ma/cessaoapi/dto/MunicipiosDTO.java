@@ -2,7 +2,7 @@ package br.gov.ma.cessaoapi.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class MunicipiosDTO implements Serializable {
@@ -13,7 +13,7 @@ public class MunicipiosDTO implements Serializable {
     private Long id;
 
     @ApiModelProperty(position = 2)
-    @NotEmpty(message = "Nome Municipio é obrigatório")
+    @NotNull(message = "Nome Municipio é obrigatório")
     private String nomeMunicipio;
 
     @ApiModelProperty(position = 3)

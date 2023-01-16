@@ -1,28 +1,31 @@
 package br.gov.ma.cessaoapi.service.impl;
 
 import br.gov.ma.cessaoapi.domain.Estados;
-import br.gov.ma.cessaoapi.domain.Pais;
 import br.gov.ma.cessaoapi.dto.EstadosDTO;
-import br.gov.ma.cessaoapi.dto.PaisDTO;
 import br.gov.ma.cessaoapi.errors.BusinessException;
 import br.gov.ma.cessaoapi.errors.NotFoundException;
 import br.gov.ma.cessaoapi.mapper.EstadosMapper;
 import br.gov.ma.cessaoapi.repository.EstadosRepository;
 import br.gov.ma.cessaoapi.service.EstadosService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EstadosServiceImpl implements EstadosService {
 
     private static final long serialVersionUID = 3509084161182640473L;
-    private final static Logger logger = LoggerFactory.getLogger(PaisServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(EstadosServiceImpl.class);
 
     private final EstadosRepository repository;
     private final EstadosMapper mapper;
@@ -35,11 +38,10 @@ public class EstadosServiceImpl implements EstadosService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {BusinessException.class})
     public EstadosDTO salvarEstado(EstadosDTO dto) throws BusinessException {
-        if(StringUtils.isEmpty(dto.getNomeEstado())){
+        if(StringUtils.isEmpty(dto.getNome())){
             logger.error("O nome do estado não pode ser nulo");
             throw new BusinessException("O nome do estado não pode ser nulo");
         }
-        // UMA IDEIA DE COMO USAR O MAPPER, MAS CONFORME FOR EXISTINDO RELACIONAMENTO OS MAPPERS TB DEVEM CARREGAR
         Estados estadosToPersist = this.mapper.toEntity(dto);
         this.repository.save(estadosToPersist);
 
@@ -48,17 +50,48 @@ public class EstadosServiceImpl implements EstadosService {
     }
 
     @Override
-    public EstadosDTO autalizarEstado(Long idEstado, EstadosDTO dto) throws NotFoundException, BusinessException {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {NotFoundException.class, BusinessException.class})
+    public EstadosDTO atualizarEstado(Long idEstado, EstadosDTO dto) throws NotFoundException, BusinessException {
+        if(StringUtils.isEmpty(dto.getNome())){
+            logger.error("O nome do estado não pode ser nulo");
+            throw new BusinessException("O nome do pais não pode ser nulo");
+        }
+
+        Optional<Estados> estadoExists = this.repository.findById(idEstado);
+        if(!estadoExists.isPresent()){
+            logger.error(String.format("Não foi encontrado um estado com o id [%s]", idEstado));
+            throw new NotFoundException(String.format("Não foi encontrado um estado com o id [%s]", idEstado));
+        }
+
+        estadoExists.get().setNome(dto.getNome());
+        this.repository.save(estadoExists.get());
+
+        EstadosDTO dtoResponse = this.mapper.toDto(estadoExists.get());
+        return dtoResponse;
     }
 
     @Override
     public EstadosDTO buscaEstadoPorId(Long idEstado) throws NotFoundException, BusinessException {
-        return null;
+        Optional<Estados> estadoExists = this.repository.findById(idEstado);
+        if(!estadoExists.isPresent()){
+            logger.error(String.format("Não foi encontrado um estado com o id [%s]", idEstado));
+            throw new NotFoundException(String.format("Não foi encontrado um estado com o id [%s]", idEstado));
+        }
+
+        return this.mapper.toDto(estadoExists.get());
     }
 
     @Override
-    public List<EstadosDTO> buscarEstadoPorFiltros(String nomeEstado, int page, int size) throws NotFoundException, BusinessException {
-        return null;
+    public List<EstadosDTO> buscarEstadoPorFiltros(String nomeEstado, String sigla, Long id, long idPais,
+                                                   int page, int size) throws NotFoundException, BusinessException {
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
+
+        List<EstadosDTO> listResponse = this.repository.buscaEstadoPorFiltros(nomeEstado, sigla, id, idPais, pageable);
+        if(CollectionUtils.isEmpty(listResponse)){
+            logger.error(String.format("Não foi encontrado um resultado para a pesquisa"));
+            throw new NotFoundException(String.format("Não foi encontrado um resultado para a pesquisa"));
+        }
+
+        return listResponse;
     }
 }
